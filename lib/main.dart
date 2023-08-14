@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/models/pokemon_model.dart';
 import 'package:pokedex/pages/home/home_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const Podedex());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Podedex extends StatelessWidget {
+  const Podedex({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final List<PokemonModel> pokemonList = [];
+
+
     return MaterialApp(
-      title: 'Flutter Pokedex',
-      theme: ThemeData(primarySwatch: Colors.red),
-      home: HomePage(),
+      title: 'Pokedex',
+      home: HomePage(pokemonList: pokemonList,),
     );
   }
 }
