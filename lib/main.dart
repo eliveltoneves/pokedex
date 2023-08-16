@@ -14,6 +14,9 @@ class Podedex extends StatelessWidget {
 
     return MaterialApp(
       title: 'Pokedex',
+      theme: ThemeData(
+        primarySwatch: Colors.red
+      ),
       home: HomePage(),
     );
   }

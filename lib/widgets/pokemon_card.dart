@@ -1,48 +1,56 @@
 import 'package:flutter/material.dart';
-
 import 'package:pokedex/models/pokemon_model.dart';
-import 'package:pokedex/pages/home/home_loading.dart';
-import 'package:pokedex/services/pokemon_service.dart';
 
 
 class PokemonCard extends StatelessWidget {
-  const PokemonCard({
-    Key? key,
-    required this.pokemonModel,
-  }) : super(key: key);
-  final PokemonModel pokemonModel;
-  
-  
+  final Pokemon pokemon;
+
+  PokemonCard({required this.pokemon});
 
   @override
   Widget build(BuildContext context) {
-     return  FutureBuilder<PokemonModel>(
-      future: PokemonService().fetchPokemonData(pokemonModel),
-      builder: (context, snaphot) {
-        if (snaphot.connectionState == ConnectionState.waiting ) {
-          return const HomeLoading();
-        } else if (snaphot.hasError) {
-          return Text('Error: ${snaphot.error}');
-        } else {          
-          return Container(
-            margin: EdgeInsets.all(8.0),
+    return Center(
+      child: Container(
+        width: MediaQuery.of(context).size.width * 0.9,
+        height: MediaQuery.of(context).size.height * 0.5,
+        child: Card(
+          elevation: 4,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.0),
-              color: Colors.grey[300],
-            ),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(height: 8.0),
-                  Text(pokemonModel.name),
-                  Image.network(pokemonModel.img, width: 80, height: 80,), // Exibir a imagem do Pokémon
-                ],
+              gradient: LinearGradient(
+                colors: [Colors.blueAccent, Colors.indigoAccent],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
               ),
+              borderRadius: BorderRadius.circular(12),
             ),
-          );
-        }
-      }
-    );    
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    pokemon.name,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Image.network(
+                  pokemon.imageUrl,
+                  height: 200,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
