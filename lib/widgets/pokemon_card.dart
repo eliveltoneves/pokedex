@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:pokedex/models/pokemon_model.dart';
 import 'package:pokedex/pages/home/home_loading.dart';
+import 'package:pokedex/services/pokemon_service.dart';
 
 
 class PokemonCard extends StatelessWidget {
@@ -16,7 +17,7 @@ class PokemonCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
      return  FutureBuilder<PokemonModel>(
-      future: Future.value(pokemonModel),
+      future: PokemonService().fetchPokemonData(pokemonModel),
       builder: (context, snaphot) {
         if (snaphot.connectionState == ConnectionState.waiting ) {
           return const HomeLoading();

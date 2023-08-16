@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/models/pokemon_model.dart';
 import 'package:pokedex/pages/home/home_page.dart';
 
 void main() {
@@ -11,12 +10,11 @@ class Podedex extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<PokemonModel> pokemonList = [];
-
+    
 
     return MaterialApp(
       title: 'Pokedex',
-      home: HomePage(pokemonList: pokemonList,),
+      home: HomePage(),
     );
   }
 }

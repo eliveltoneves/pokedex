@@ -18,4 +18,6 @@ class PokemonService {
       throw Exception('Failed to load Pokémon');
     }
   }
+
+  fetchPokemonList() {}
 }
