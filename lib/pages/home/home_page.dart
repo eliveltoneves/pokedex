@@ -23,24 +23,41 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Scaffold(
-        body: FutureBuilder<List<Pokemon>>(
-          future: _pokemonList,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return HomeLoading();
-            } else if (snapshot.hasError) {
-              return HomeError(error: 'Não foi possível carregar a lista de pokemons',);
-            } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return HomeError(error: '',);
-            } else {
-              return PokemonList(pokemonList: snapshot.data!);
-            }
-          },
-        ),
-      ),
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(height: 100), // Espaçamento para o banner
+            SizedBox(
+              width: 200,
+              child: Align(
+                alignment: Alignment.center,
+                child: Image.asset('images/pokedex.png'),
+              ),
+            ), // Imagem do banner
+            Expanded(
+              child: FutureBuilder<List<Pokemon>>(
+                future: _pokemonList,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return HomeLoading();
+                  } else if (snapshot.hasError) {
+                    return HomeError(error: 'Não foi possível carregar a lista de pokemons');
+                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return HomeError(error: '');
+                  } else {
+                    return PokemonList(pokemonList: snapshot.data!);
+                  }
+                },
+              ),
+            ),
+          ],
+        ),      
     );
   }
 }
+
+
+

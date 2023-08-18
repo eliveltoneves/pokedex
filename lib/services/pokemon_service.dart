@@ -19,6 +19,7 @@ class PokemonService {
                 id: pokemonData['id'],
                 name: pokemonData['name'],
                 imageUrl: pokemonData['img'],
+                type: List<String>.from(pokemonData['type'])
               ))
           .toList();
     } else {

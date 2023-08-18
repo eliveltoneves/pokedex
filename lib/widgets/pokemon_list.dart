@@ -6,18 +6,36 @@ import 'package:pokedex/widgets/pokemon_card.dart';
 class PokemonList extends StatelessWidget {
   final List<Pokemon> pokemonList;
 
-  PokemonList({required this.pokemonList});
+  const PokemonList({super.key, required this.pokemonList});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: pokemonList.length,
-        itemBuilder: (context, index) {
-          final pokemon = pokemonList[index];
-          return PokemonCard(pokemon: pokemon);
-        },
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.black, Colors.white],
+            begin: Alignment.center,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Column(
+          children: [
+            Expanded(
+              child: GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 1.4
+              ),
+              itemCount: pokemonList.length,
+              itemBuilder: (context, index) {
+                  final pokemon = pokemonList[index];
+                  return PokemonCard(pokemon: pokemon);
+                },
+              )
+            ) 
+         ]
+        ),
       ),
     );
   }
