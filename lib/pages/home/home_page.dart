@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/models/pokemon_model.dart';
 import 'package:pokedex/services/pokemon_service.dart';
-import 'package:pokedex/widgets/pokemon_list.dart';
+import 'package:pokedex/pages/home/widgets/pokemon_list.dart';
 import 'home_loading.dart';
 import 'home_error.dart';
 

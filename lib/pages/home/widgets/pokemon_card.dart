@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:pokedex/models/pokemon_model.dart';
 import 'package:pokedex/models/type_colors.dart';
+import 'package:pokedex/utils/app_routes.dart';
 
 class PokemonCard extends StatelessWidget {
   final Pokemon pokemon;
@@ -16,7 +17,14 @@ class PokemonCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var type = pokemon.type[0];
-    return Card(
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).pushNamed(
+          AppRoutes.details,
+          arguments: pokemon,
+        );
+      },
+      child: Card(
             elevation: 4,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12)
@@ -74,6 +82,7 @@ class PokemonCard extends StatelessWidget {
                 ),
               ],
             ),
-        );
+        )
+    );
   }
 }
